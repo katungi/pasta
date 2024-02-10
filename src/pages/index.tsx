@@ -1,5 +1,8 @@
+import { Search } from "@/components/Search";
+import { TextCard } from "@/components/TextCard";
 import { useClipStore } from "@/store/clips.store";
 import { UnlistenFn } from "@tauri-apps/api/event";
+import { CommandEmpty, CommandInput, CommandList } from "cmdk";
 import _ from "lodash";
 import type { NextPage } from "next"
 import { useEffect, useState } from "react"
@@ -12,7 +15,6 @@ import {
   startListening,
 } from "tauri-plugin-clipboard-api";
 const Home: NextPage = () => {
-  const [copiedText, setCopiedText] = useState("Copied text will be here");
   const { updateClips, clips } = useClipStore()
 
   let unlistenTextUpdate: UnlistenFn;
@@ -47,16 +49,26 @@ const Home: NextPage = () => {
   return (
     <div className="flex h-96">
       <main className="w-full overflow-auto overflow-y-auto">
-        {
-          clips.reverse().map((clip, index) => {
-            return (
-              <div key={index} className="w-full ">
-                <p className="text-white">{clip}</p>
-              </div>
+        <CommandInput placeholder="Type a command or search..." />
+        {/* <CommandList>
+          <CommandEmpty>No Result found.</CommandEmpty>
+          {
+            clips.reverse().map((clip, index) => {
+              return (
+                <TextCard text={clip} index={index} key={index} />
+              )
+            }
             )
           }
-          )
-        }
+        </CommandList> */}
+        {
+            clips.reverse().map((clip, index) => {
+              return (
+                <TextCard text={clip} index={index} key={index} />
+              )
+            }
+            )
+          }
       </main>
     </div>
   )

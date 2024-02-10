@@ -1,9 +1,11 @@
-#![cfg_attr(
+use tauri::Manager;
+use window_vibrancy::{apply_vibrancy, NSVisualEffectMaterial};
+use std::time::{SystemTime, UNIX_EPOCH};
+
+#[cfg_attr(
     all(not(debug_assertions), target_os = "windows"),
     windows_subsystem = "windows"
 )]
-
-use std::time::{SystemTime, UNIX_EPOCH};
 
 #[tauri::command]
 fn on_button_clicked() -> String {
@@ -16,8 +18,21 @@ fn on_button_clicked() -> String {
 }
 
 fn main() {
+    let context = tauri::generate_context!();
     tauri::Builder::default()
+        .setup(|app| {
+            let window = app.get_window("main").unwrap();
+
+            // apply_acrylic(&window, Some((0, 0, 0, 10)));
+            
+            #[cfg(target_os = "macos")]
+            apply_vibrancy(&window, NSVisualEffectMaterial::HudWindow, None, None)
+                .expect("Unsupported platform! 'apply_vibrancy' is only supported on macOS");
+
+            Ok(())
+        })
+        .plugin(tauri_plugin_clipboard::init())
         .invoke_handler(tauri::generate_handler![on_button_clicked])
-        .run(tauri::generate_context!())
+        .run(context)
         .expect("error while running tauri application");
 }

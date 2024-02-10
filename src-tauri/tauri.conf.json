@@ -11,8 +11,14 @@
     "version": "0.1.0"
   },
   "tauri": {
+    "macOSPrivateApi": true,
     "allowlist": {
-      "all": true
+      "all": true,
+      "clipboard": {
+        "all": true, 
+        "writeText": true,
+        "readText": true
+      }
     },
     "bundle": {
       "active": true,
@@ -29,7 +35,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "com.katungi.pasta",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -57,9 +63,11 @@
       {
         "fullscreen": false,
         "resizable": true,
-        "title": "Tauri NextJS App",
-        "width": 1280,
-        "height": 800
+        "title": "Pasta",
+        "width": 800,
+        "height": 600,
+        "transparent": true,
+        "alwaysOnTop": false
       }
     ]
   }

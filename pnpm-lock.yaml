@@ -20,6 +20,9 @@ dependencies:
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
+  tauri-plugin-clipboard-api:
+    specifier: ^0.6.0
+    version: 0.6.0
 
 devDependencies:
   '@prettier/plugin-xml':
@@ -4166,6 +4169,14 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
+  /tauri-plugin-clipboard-api@0.6.0:
+    resolution: {integrity: sha512-8HNkCo+tPiY1sPKrlTkFexUlK/F2m0srUFnPyoL7VdD8BUQniT/0D9FBrm6VsczpLRy6YjD/EezbfN02Lq8PeQ==}
+    dependencies:
+      '@tauri-apps/api': 1.5.3
+      tslib: 2.6.2
+      zod: 3.22.4
+    dev: false
+
   /text-table@0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
     dev: true
@@ -4410,3 +4421,7 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  /zod@3.22.4:
+    resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
+    dev: false

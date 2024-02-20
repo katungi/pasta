@@ -1,10 +1,10 @@
 {
-  "name": "tauri-nextjs-template",
+  "name": "Pasta",
   "version": "0.1.0",
   "private": true,
   "author": {
-    "name": "Your Name Here",
-    "email": "your-email-here@example.com"
+    "name": "Daniel Denis",
+    "email": "dankatdennis@gmail.com"
   },
   "scripts": {
     "next-start": "cross-env BROWSER=none NODE_OPTIONS='--inspect' next dev",

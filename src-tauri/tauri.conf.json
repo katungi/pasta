@@ -7,7 +7,7 @@
     "distDir": "../out"
   },
   "package": {
-    "productName": "tauri-nextjs-template",
+    "productName": "Pasta!",
     "version": "0.1.0"
   },
   "tauri": {
@@ -15,7 +15,7 @@
     "allowlist": {
       "all": true,
       "clipboard": {
-        "all": true, 
+        "all": true,
         "writeText": true,
         "readText": true
       }
@@ -65,12 +65,12 @@
         "resizable": false,
         "title": "Pasta",
         "width": 500,
-        "height": 600,
+        "height": 300,
         "transparent": true,
-        "alwaysOnTop": false, 
-        "decorations": false, 
-        "hiddenTitle": true, 
-        "focus": false, 
+        "alwaysOnTop": false,
+        "decorations": false,
+        "hiddenTitle": true,
+        "focus": false,
         "visible": false
       }
     ],

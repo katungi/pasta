@@ -43,28 +43,22 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-    <div className="flex h-96 arrow">
+    <div className="flex h-96 arrow p-3">
       <main className="w-full overflow-auto overflow-y-auto">
-       
-        {/* <CommandList>
-          <CommandEmpty>No Result found.</CommandEmpty>
+        <div className="h-12">
+          <h6 className="text-[#F2F2F2] p-2 px-4">Search the clipboard...</h6>
+        </div>
+        <div className="border px-2 border-neutral-600" />
+        <div>
           {
-            clips.reverse().map((clip, index) => {
+            clips?.reverse()?.map((clip, index) => {
               return (
                 <TextCard text={clip} index={index} key={index} />
               )
             }
             )
           }
-        </CommandList> */}
-        {
-          clips?.reverse()?.map((clip, index) => {
-            return (
-              <TextCard text={clip} index={index} key={index} />
-            )
-          }
-          )
-        }
+        </div>
       </main>
     </div>
   )

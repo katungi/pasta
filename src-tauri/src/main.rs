@@ -1,8 +1,8 @@
 use std::time::{SystemTime, UNIX_EPOCH};
 use tauri::{Manager, SystemTray, SystemTrayEvent, SystemTrayMenu};
+use tauri_plugin_autostart::MacosLauncher;
 use tauri_plugin_positioner::{Position, WindowExt};
 use window_vibrancy::{apply_vibrancy, NSVisualEffectMaterial};
-use tauri_plugin_autostart::MacosLauncher;
 
 #[cfg_attr(
     all(not(debug_assertions), target_os = "windows"),
@@ -24,7 +24,10 @@ fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_clipboard::init())
         .plugin(tauri_plugin_positioner::init())
-        .plugin(tauri_plugin_autostart::init(MacosLauncher::LaunchAgent, Some(vec!["--flag1", "--flag2"])))
+        .plugin(tauri_plugin_autostart::init(
+            MacosLauncher::LaunchAgent,
+            Some(vec!["--flag1", "--flag2"]),
+        ))
         .system_tray(SystemTray::new().with_menu(system_tray_menu))
         .on_system_tray_event(|app, event| {
             tauri_plugin_positioner::on_tray_event(app, &event);

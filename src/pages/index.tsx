@@ -1,16 +1,12 @@
-import { Search } from "@/components/Search";
 import { TextCard } from "@/components/TextCard";
 import { useClipStore } from "@/store/clips.store";
 import { UnlistenFn } from "@tauri-apps/api/event";
-import { CommandEmpty, CommandInput, CommandList } from "cmdk";
+import { CommandInput } from "cmdk";
 import _ from "lodash";
 import type { NextPage } from "next"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import {
   listenToMonitorStatusUpdate,
-  onClipboardUpdate,
-  onFilesUpdate,
-  onImageUpdate,
   onTextUpdate,
   startListening,
 } from "tauri-plugin-clipboard-api";
@@ -47,9 +43,9 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-    <div className="flex h-96">
+    <div className="flex h-96 arrow">
       <main className="w-full overflow-auto overflow-y-auto">
-        <CommandInput placeholder="Type a command or search..." />
+       
         {/* <CommandList>
           <CommandEmpty>No Result found.</CommandEmpty>
           {
@@ -62,13 +58,13 @@ const Home: NextPage = () => {
           }
         </CommandList> */}
         {
-            clips.reverse().map((clip, index) => {
-              return (
-                <TextCard text={clip} index={index} key={index} />
-              )
-            }
+          clips?.reverse()?.map((clip, index) => {
+            return (
+              <TextCard text={clip} index={index} key={index} />
             )
           }
+          )
+        }
       </main>
     </div>
   )

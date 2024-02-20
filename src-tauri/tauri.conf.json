@@ -62,13 +62,22 @@
     "windows": [
       {
         "fullscreen": false,
-        "resizable": true,
+        "resizable": false,
         "title": "Pasta",
         "width": 500,
-        "height": 350,
+        "height": 600,
         "transparent": true,
-        "alwaysOnTop": false
+        "alwaysOnTop": false, 
+        "decorations": false, 
+        "hiddenTitle": true, 
+        "focus": false, 
+        "visible": false
       }
-    ]
+    ],
+    "systemTray": {
+      "iconPath": "icons/Square310x310Logo.png",
+      "iconAsTemplate": true,
+      "menuOnLeftClick": false
+    }
   }
 }

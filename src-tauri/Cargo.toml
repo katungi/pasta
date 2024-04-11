@@ -22,6 +22,7 @@ window-vibrancy = "0.4.0"
 tauri-plugin-clipboard = "0.6.0"
 tauri-plugin-positioner = { version = "1.0.4", features = ["system-tray"] }
 tauri-plugin-autostart = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v1" }
+cocoa = "0.25.0"
 
 [features]
 # by default Tauri runs in production mode

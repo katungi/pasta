@@ -60,7 +60,17 @@ fn main() {
         })
         .setup(|app| {
             let window = app.get_window("main").unwrap();
-
+            // #[cfg(target_os = "macos")]
+            // {
+            //     use cocoa::appkit::{NSMainMenuWindowLevel, NSWindow, NSWindowCollectionBehavior};
+            //     use cocoa::base::id;
+            //     let ns_win = window.ns_window().unwrap() as id;
+            //     unsafe {
+            //         ns_win.setLevel_(((NSMainMenuWindowLevel + 1) as u64).try_into().unwrap());
+            //         ns_win.setCollectionBehavior_(NSWindowCollectionBehavior::NSWindowCollectionBehaviorCanJoinAllSpaces);
+            //         // ns_win.setCollectionBehavior_(NSWindowCollectionBehavior::NSWindowCollectionBehaviorMoveToActiveSpace);
+            //     }
+            // }
             #[cfg(target_os = "macos")]
             apply_vibrancy(&window, NSVisualEffectMaterial::HudWindow, None, None)
                 .expect("Unsupported platform! 'apply_vibrancy' is only supported on macOS");

@@ -33,6 +33,10 @@ jobs:
           echo $TAURI_KEY_PASSWORD >> .env
           echo $TAURI_PRIVATE_KEY >> .env
 
+      - name: export term
+        run: |
+          export TERM=xterm-256color
+
       - name: print env
         run: |
           nano .env

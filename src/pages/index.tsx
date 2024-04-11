@@ -70,7 +70,7 @@ const Home: NextPage = () => {
       </CardHeader>
       <CardContent className="p-0 flex flex-col overflow-auto">
         <div className="flex-1 flex flex-col gap-2 px-6 items-start">
-          {clips.length >= 1 ? (
+          {clips.length && clips.length >= 1 ? (
             <div className="grid gap-2 text-sm w-full">
               {clips.map((item, index) => (
                 <ClipboardItem key={index} clip={item} />

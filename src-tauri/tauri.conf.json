@@ -61,8 +61,9 @@
       "endpoints": [
         "https://releases.myapp.com/{{target}}/{{arch}}/{{current_version}}"
       ],
-      "dialog": true,
+      "dialog": false,
       "pubkey": "/Users/dankat/.tauri/pasta.key.pub"
+
     },
     "windows": [
       {

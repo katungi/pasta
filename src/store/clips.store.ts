@@ -32,7 +32,6 @@ export const useClipStore = create<ClipsStore>((set) => ({
   },
   removeClip: (clipText) => {
     set((state) => ({
-      // Filter out the clip that matches the clipText
       clips: state.clips.filter((clip) => clip.text !== clipText),
     }))
   },

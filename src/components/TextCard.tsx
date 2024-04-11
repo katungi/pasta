@@ -5,6 +5,7 @@ import { ClipboardIcon, TrashIcon } from "@/components/Icons"
 import { useClipStore } from "@/store/clips.store"
 
 import { Button } from "./ui/button"
+import toast from "react-hot-toast";
 
 export const ClipboardItem = ({ clip }: any) => {
   const { removeClip } = useClipStore()
@@ -22,7 +23,9 @@ export const ClipboardItem = ({ clip }: any) => {
         size="sm"
         variant="ghost"
         onClick={() => {
+
           removeClip(clip.text)
+          toast.success("Removed from Clipboard")
         }}
       >
         <TrashIcon className="w-4 h-4" />

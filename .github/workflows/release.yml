@@ -28,6 +28,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: print keys
+        run : echo $TAURI_KEY_PASSWORD
+
       - name: setup node
         uses: actions/setup-node@v4
         with:

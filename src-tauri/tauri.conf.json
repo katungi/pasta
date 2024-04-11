@@ -15,7 +15,7 @@
     "allowlist": {
       "all": true,
       "clipboard": {
-        "all": true,
+        "all": true, 
         "writeText": true,
         "readText": true
       }
@@ -64,14 +64,9 @@
         "fullscreen": false,
         "resizable": false,
         "title": "Pasta",
-        "width": 400,
-        "height": 300,
-        "transparent": true,
-        "alwaysOnTop": false,
-        "decorations": false,
-        "hiddenTitle": true,
-        "focus": false,
-        "visible": false
+        "width": 380,
+        "height": 600,
+        "decorations": false
       }
     ],
     "systemTray": {

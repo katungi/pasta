@@ -8,6 +8,7 @@ use window_vibrancy::{apply_vibrancy, NSVisualEffectMaterial};
     all(not(debug_assertions), target_os = "windows"),
     windows_subsystem = "windows"
 )]
+
 #[tauri::command]
 fn on_button_clicked() -> String {
     let start = SystemTime::now();
@@ -49,14 +50,14 @@ fn main() {
                 _ => {}
             }
         })
-        // .on_window_event(|event| match event.event() {
-        //     tauri::WindowEvent::Focused(is_focused) => {
-        //         if !is_focused {
-        //             event.window().hide().unwrap();
-        //         }
-        //     }
-        //     _ => {}
-        // })
+        .on_window_event(|event| match event.event() {
+            tauri::WindowEvent::Focused(is_focused) => {
+                if !is_focused {
+                    event.window().hide().unwrap();
+                }
+            }
+            _ => {}
+        })
         .setup(|app| {
             let window = app.get_window("main").unwrap();
 

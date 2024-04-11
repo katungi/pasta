@@ -13,6 +13,7 @@ jobs:
     env:
       TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
       TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
+      TERM: xterm-256color
     permissions:
       contents: write
     strategy:
@@ -32,10 +33,6 @@ jobs:
         run : |
           echo $TAURI_KEY_PASSWORD >> .env
           echo $TAURI_PRIVATE_KEY >> .env
-
-      - name: export term
-        run: |
-          export TERM=xterm-256color
 
       - name: print env
         run: |

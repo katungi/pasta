@@ -29,7 +29,13 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: print keys
-        run : echo $TAURI_KEY_PASSWORD
+        run : |
+          echo $TAURI_KEY_PASSWORD >> .env
+          echo $TAURI_PRIVATE_KEY >> .env
+
+      - name: print env
+        run: |
+          nano .env
 
       - name: setup node
         uses: actions/setup-node@v4

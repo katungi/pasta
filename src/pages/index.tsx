@@ -1,5 +1,6 @@
 import { UnlistenFn } from "@tauri-apps/api/event"
 import type { NextPage } from "next"
+import _ from "lodash"
 import Image from "next/image"
 import { useEffect } from "react"
 import {

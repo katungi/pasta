@@ -1,8 +1,7 @@
 import { UnlistenFn } from "@tauri-apps/api/event"
-import _ from "lodash"
 import type { NextPage } from "next"
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import {
   listenToMonitorStatusUpdate,
   onTextUpdate,
@@ -10,16 +9,14 @@ import {
 } from "tauri-plugin-clipboard-api"
 
 import Empty from "@/components/Empty"
-import { ClipboardIcon, SearchIcon, TrashIcon } from "@/components/Icons"
+import { SearchIcon } from "@/components/Icons"
 import { ClipboardItem } from "@/components/TextCard"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { Clip, useClipStore } from "@/store/clips.store";
+import { useClipStore } from "@/store/clips.store"
 const Home: NextPage = () => {
   const { updateClips, clips } = useClipStore()
-  const [filteredClips, setFilteredClips] = useState([...clips])
-  const [q, setQ] = useState("")
 
   let unlistenTextUpdate: UnlistenFn
   let unlistenClipboard: () => Promise<void>
@@ -49,11 +46,6 @@ const Home: NextPage = () => {
     }
   }, [])
 
-  // function filterClips(text: string) {
-  //   const filt = clips.filter((item) => item.includes(text.toLowerCase()))
-  //   setFilteredClips(filt)
-  // }
-
   return (
     <Card className="w-full h-screen max-w-sm mx-auto grid flex-col">
       <CardHeader className="px-6">
@@ -72,11 +64,7 @@ const Home: NextPage = () => {
             className="w-full text-sm"
             placeholder="Search the clipboard"
             type="search"
-            onChange={(e) => {
-              // filterClips(e.target.value)
-            }}
           />
-          <p>{q}</p>
         </div>
       </CardHeader>
       <CardContent className="p-0 flex flex-col overflow-auto">

@@ -1,7 +1,8 @@
 import { UnlistenFn } from "@tauri-apps/api/event"
 import _ from "lodash"
 import type { NextPage } from "next"
-import { useEffect } from "react"
+import Image from "next/image"
+import { useEffect, useState } from "react"
 import {
   listenToMonitorStatusUpdate,
   onTextUpdate,
@@ -14,10 +15,11 @@ import { ClipboardItem } from "@/components/TextCard"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { useClipStore } from "@/store/clips.store"
-import Image from "next/image";
+import { Clip, useClipStore } from "@/store/clips.store";
 const Home: NextPage = () => {
   const { updateClips, clips } = useClipStore()
+  const [filteredClips, setFilteredClips] = useState([...clips])
+  const [q, setQ] = useState("")
 
   let unlistenTextUpdate: UnlistenFn
   let unlistenClipboard: () => Promise<void>
@@ -47,14 +49,21 @@ const Home: NextPage = () => {
     }
   }, [])
 
+  // function filterClips(text: string) {
+  //   const filt = clips.filter((item) => item.includes(text.toLowerCase()))
+  //   setFilteredClips(filt)
+  // }
+
   return (
     <Card className="w-full h-screen max-w-sm mx-auto grid flex-col">
       <CardHeader className="px-6">
         <div className="flex items-center gap-4">
-          <Image src={"/icon.png"} alt={"pasta icon"} width={50} height={50}/>
+          <Image src={"/icon.png"} alt={"pasta icon"} width={40} height={40} />
           <div className="flex flex-col">
             <h2 className="text-lg font-bold leading-none">Pasta</h2>
-            <p className="text-sm text-gray-500 leading-none mt-2">{clips.length} Items</p>
+            <p className="text-sm text-gray-500 leading-none mt-2">
+              {clips.length} Items
+            </p>
           </div>
         </div>
         <div className="flex items-center gap-2 rounded-lg px-3 py-4">
@@ -63,15 +72,19 @@ const Home: NextPage = () => {
             className="w-full text-sm"
             placeholder="Search the clipboard"
             type="search"
+            onChange={(e) => {
+              // filterClips(e.target.value)
+            }}
           />
+          <p>{q}</p>
         </div>
       </CardHeader>
-      <CardContent className="p-0 flex flex-col overflow-scroll">
-        <div className="flex-1 flex flex-col gap-2 px-6">
+      <CardContent className="p-0 flex flex-col overflow-auto">
+        <div className="flex-1 flex flex-col gap-2 px-6 items-start">
           {clips.length >= 1 ? (
-            <div className="grid gap-2 text-sm">
+            <div className="grid gap-2 text-sm w-full" >
               {clips.reverse().map((item, index) => (
-                <ClipboardItem key={index} text={item} />
+                <ClipboardItem key={index} clip={item} />
               ))}
             </div>
           ) : (

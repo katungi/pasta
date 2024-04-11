@@ -32,7 +32,6 @@ jobs:
       - name: print keys
         run : |
           echo $TAURI_KEY_PASSWORD >> .env
-          echo $TAURI_PRIVATE_KEY >> .env
 
       - name: print env
         run: |

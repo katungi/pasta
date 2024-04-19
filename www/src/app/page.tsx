@@ -145,8 +145,8 @@ export default function Home() {
         <div className='mx-auto max-w-6xl gap-6 pb-24 pt-20 sm:pb-32 lg:gap-x-8 lg:px-8 lg:py-40'>
           <div className='w-full flex flex-col'>
             <div className='flex justify-center text-center'>
-              <h2 className='font-heading text-5xl lg:text-6xl font-bold leading-tight text-balance sm:leading-none tracking-tight'>
-                "Mac Clipboards{' '}
+              <h2 className='font-heading text-4xl lg:text-5xl font-bold leading-tight text-balance sm:leading-none tracking-tight'>
+                "Mac Clipboards Managers{' '}
                 <span className='bg-red-500 text-white font-scary px-3'>
                   f@#k!ng
                 </span>{' '}

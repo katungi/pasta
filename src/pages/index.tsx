@@ -8,6 +8,7 @@ import {
   onTextUpdate,
   startListening,
 } from "tauri-plugin-clipboard-api"
+import { exit } from '@tauri-apps/api/process';
 
 import Empty from "@/components/Empty"
 import { SearchIcon } from "@/components/Icons"
@@ -83,11 +84,12 @@ const Home: NextPage = () => {
       </CardContent>
       <CardFooter className="p-0">
         <footer className="flex justify-between p-4">
-          <Button size="sm" variant="ghost">
-            View All
-          </Button>
-          <Button size="sm" variant="ghost">
-            Color Settings
+          <Button size="sm" className="w-full" variant="ghost"
+            onClick={async () => {
+              await exit(1);
+            }}
+          >
+            Quit Pasta 🍝
           </Button>
         </footer>
       </CardFooter>

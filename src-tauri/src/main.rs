@@ -8,7 +8,6 @@ use window_vibrancy::{apply_vibrancy, NSVisualEffectMaterial};
     all(not(debug_assertions), target_os = "windows"),
     windows_subsystem = "windows"
 )]
-
 #[tauri::command]
 fn on_button_clicked() -> String {
     let start = SystemTime::now();
@@ -60,6 +59,7 @@ fn main() {
         })
         .setup(|app| {
             let window = app.get_window("main").unwrap();
+
             // #[cfg(target_os = "macos")]
             // {
             //     use cocoa::appkit::{NSMainMenuWindowLevel, NSWindow, NSWindowCollectionBehavior};
@@ -67,7 +67,9 @@ fn main() {
             //     let ns_win = window.ns_window().unwrap() as id;
             //     unsafe {
             //         ns_win.setLevel_(((NSMainMenuWindowLevel + 1) as u64).try_into().unwrap());
-            //         ns_win.setCollectionBehavior_(NSWindowCollectionBehavior::NSWindowCollectionBehaviorCanJoinAllSpaces);
+            //         ns_win.setCollectionBehavior_(
+            //             NSWindowCollectionBehavior::NSWindowCollectionBehaviorCanJoinAllSpaces,
+            //         );
             //         // ns_win.setCollectionBehavior_(NSWindowCollectionBehavior::NSWindowCollectionBehaviorMoveToActiveSpace);
             //     }
             // }

@@ -27,12 +27,8 @@ export const ClipboardItem: React.FC<ClipboardItemProps> = ({ clip }) => {
   }
 
   return (
-    <div className="flex items-center gap-2 p-2 rounded-md bg-gray-100 dark:bg-gray-800 cursor-pointer hover:bg-gray-200">
-      <Button
-        size="sm"
-        variant={"ghost"}
-        onClick={async () => AddToClipBoard()}
-      >
+    <div className="flex items-center gap-2 p-2 rounded-md bg-gray-100 dark:bg-gray-800 cursor-pointer hover:bg-gray-200" >
+      <Button size="sm" variant={"ghost"} onClick={async () => AddToClipBoard()}>
         <ClipboardIcon className="h-6 w-6 rounded-md text-muted" />
       </Button>
       <div className="flex-1 grid gap-1">

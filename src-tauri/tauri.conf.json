@@ -71,7 +71,8 @@
         "title": "Pasta",
         "width": 380,
         "height": 600,
-        "decorations": false
+        "decorations": false,
+        "visible": false
       }
     ],
     "systemTray": {

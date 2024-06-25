@@ -9,6 +9,7 @@ use window_vibrancy::{apply_vibrancy, NSVisualEffectMaterial};
     windows_subsystem = "windows"
 )]
 #[tauri::command]
+
 fn on_button_clicked() -> String {
     let start = SystemTime::now();
     let since_the_epoch = start
@@ -38,7 +39,7 @@ fn main() {
                     ..
                 } => {
                     let window = app.get_window("main").unwrap();
-                    let _ = window.move_window(Position::TrayCenter);
+                    let _ = window.move_window(Position::Center);
                     if window.is_visible().unwrap() {
                         window.hide().unwrap();
                     } else {
@@ -59,7 +60,6 @@ fn main() {
         })
         .setup(|app| {
             let window = app.get_window("main").unwrap();
-
             #[cfg(target_os = "macos")]
             apply_vibrancy(&window, NSVisualEffectMaterial::HudWindow, None, None)
                 .expect("Unsupported platform! 'apply_vibrancy' is only supported on macOS");

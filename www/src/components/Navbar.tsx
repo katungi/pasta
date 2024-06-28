@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 const Navbar = () => {
   return (
-    <div className='sticky inset-x-0 top-0 z-30 w-full transition-all border-b border-gray-200 bg-white/75 backdrop-blur-lg'>
+    <div className='sticky inset-x-0 top-0 z-30 w-full transition-all border-b border-gray-200 backdrop-blur-lg'>
       <div className='max-w-7xl mx-auto lg:px-8 px-6'>
         <div className='relative flex h-14 items-center justify-between sm:justify-center'>
           <Link

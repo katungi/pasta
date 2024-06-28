@@ -21,6 +21,11 @@
       },
       "globalShortcut": {
         "all": true
+      }, 
+      "app": {
+        "all": true,
+        "hide": true, 
+        "show": true
       }
     },
     "bundle": {

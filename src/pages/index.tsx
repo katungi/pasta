@@ -1,15 +1,8 @@
-import { UnlistenFn } from "@tauri-apps/api/event"
+"use client"
 import type { NextPage } from "next"
 import _ from "lodash"
 import Image from "next/image"
 import { useEffect } from "react"
-import {
-  listenToMonitorStatusUpdate,
-  onTextUpdate,
-  startListening,
-} from "tauri-plugin-clipboard-api"
-import { exit } from '@tauri-apps/api/process';
-
 import Empty from "@/components/Empty"
 import { SearchIcon } from "@/components/Icons"
 import { ClipboardItem } from "@/components/TextCard"
@@ -17,36 +10,58 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { useClipStore } from "@/store/clips.store"
+import { UnlistenFn } from "@tauri-apps/api/event"
+
 const Home: NextPage = () => {
   const { updateClips, clips } = useClipStore()
 
-  let unlistenTextUpdate: UnlistenFn
-  let unlistenClipboard: () => Promise<void>
-  let monitorRunning = false
-
   useEffect(() => {
-    const debouncedUpdateClips = _.debounce((newText) => {
-      updateClips(newText)
-    }, 300)
-    const unlistenFunctions = async () => {
-      unlistenTextUpdate = await onTextUpdate((newText) => {
-        console.log("new text::")
-        debouncedUpdateClips(newText)
+    // Check if the window object is available
+    if (typeof window === "undefined") return;
+
+    const loadTauriModules = async () => {
+      const { register } = await import("@tauri-apps/api/globalShortcut")
+      const { appWindow } = await import("@tauri-apps/api/window")
+      const app  = await import("@tauri-apps/api/app")
+      const { listenToMonitorStatusUpdate, onTextUpdate, startListening } = await import("tauri-plugin-clipboard-api")
+      const { exit } = await import('@tauri-apps/api/process')
+
+      let unlistenTextUpdate: UnlistenFn
+      let unlistenClipboard: () => Promise<void>
+      let monitorRunning = false
+
+      await register("CommandOrControl+Shift+V", async () => {
+        await app.show()
+        await appWindow.unminimize()
+        await appWindow.setFocus()
       })
-      unlistenClipboard = await startListening()
-    }
 
-    listenToMonitorStatusUpdate((running) => {
-      monitorRunning = running
-    })
-    unlistenFunctions().catch(console.error)
+      const debouncedUpdateClips = _.debounce((newText) => {
+        updateClips(newText)
+      }, 300)
 
-    return () => {
-      if (unlistenTextUpdate) {
-        unlistenTextUpdate()
+      const unlistenFunctions = async () => {
+        unlistenTextUpdate = await onTextUpdate((newText) => {
+          console.log("new text::")
+          debouncedUpdateClips(newText)
+        })
+        unlistenClipboard = await startListening()
+      }
+
+      listenToMonitorStatusUpdate((running) => {
+        monitorRunning = running
+      })
+      unlistenFunctions().catch(console.error)
+
+      return () => {
+        if (unlistenTextUpdate) {
+          unlistenTextUpdate()
+        }
       }
     }
-  }, [])
+
+    loadTauriModules()
+  }, [updateClips])
 
   return (
     <Card className="w-full h-screen max-w-sm mx-auto grid flex-col">
@@ -86,7 +101,8 @@ const Home: NextPage = () => {
         <footer className="flex justify-between p-4">
           <Button size="sm" className="w-full" variant="ghost"
             onClick={async () => {
-              await exit(1);
+              const { exit } = await import('@tauri-apps/api/process')
+              await exit(1)
             }}
           >
             Quit Pasta 🍝
@@ -97,4 +113,5 @@ const Home: NextPage = () => {
   )
 }
 
+export const dynamic = "force-dynamic";
 export default Home

@@ -176,7 +176,7 @@ export default function Home() {
               <div className='relative z-10'>
                 <div className='absolute -z-10 left-1/2 -translate-x-1/2 -top-[90px]'>
                   <div className='absolute inset-x-0 -bottom-0 h-16 bg-gradient-to-t 0 from-blue-100 pointer-events-none'></div>
-                  <Link href='https://github.com/katungi/pasta/releases/download/app-v0.1.0/Pasta._0.1.0_x64.dmg'>
+                  <Link href='https://github.com/katungi/pasta/releases/download/app-v0.1.2/Pasta._0.1.2_x64.dmg'>
                     <Button className='bg-blue-100 text-red-500 hover:bg-blue-200 hover:text-red-600'>
                       <AppleIcon className='h-6 w-6 mr-2' />
                       Download for Intel
@@ -194,7 +194,7 @@ export default function Home() {
               <div className='relative z-10'>
                 <div className='absolute -z-10 left-1/2 -translate-x-1/2 -top-[90px]'>
                   <div className='absolute inset-x-0 -bottom-0 h-16 bg-gradient-to-t from-blue-100 pointer-events-none'></div>
-                  <Link href='https://github.com/katungi/pasta/releases/download/app-v0.1.0/Pasta._0.1.0_aarch64.dmg'>
+                  <Link href='https://github.com/katungi/pasta/releases/download/app-v0.1.2/Pasta._0.1.2_aarch64.dmg'>
                     <Button className='bg-blue-100 text-black hover:bg-blue-200 hover:text-red-600'>
                       <AppleIcon className='h-6 w-6 mr-2' />
                       Download for Apple Silicon
